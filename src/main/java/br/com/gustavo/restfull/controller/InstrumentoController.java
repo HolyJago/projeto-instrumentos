@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.gustavo.restfull.domain.Instrumento;
 import br.com.gustavo.restfull.model.InstrumentoModel;
 import br.com.gustavo.restfull.service.InstrumentoService;
 
@@ -26,10 +27,10 @@ public class InstrumentoController {
 	private InstrumentoService instrumentoService;
 	
 	 @PostMapping("/cadastrar")
-	    public InstrumentoModel cadastrar(@Valid @RequestBody InstrumentoModel model, BindingResult bindingResult) {
+	    public Instrumento cadastrar(@Valid @RequestBody InstrumentoModel model, BindingResult bindingResult) {
 	    	
 	    	if (!bindingResult.hasErrors()) {
-	    		return new InstrumentoModel(instrumentoService.cadastrar(model));
+	    		return instrumentoService.cadastrar(model);
 	    	}
 	    	throw new RuntimeException("Model com erros!");
 	    }
